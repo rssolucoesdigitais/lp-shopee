@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme {
+  --color-shopee: #ee4d2d;
+  --color-shopee-dark: #d6421f;
+  --color-shopee-deep: #a8330f;
+  --color-shopee-light: #ff7337;
+  --color-cream: #fff6f0;
+  --color-charcoal: #241c1a;
+  --color-charcoal-soft: #362a26;
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-cream text-charcoal antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Classes componentizadas na camada "components": ficam abaixo de "utilities" no cascade,
+   então utilitários do Tailwind (ex.: hover:border-*) sempre conseguem sobrepô-las. */
+@layer components {
+  /* Rótulo tipo "etiqueta de promoção" — cápsula sólida com contorno tracejado. */
+  .promo-tag {
+    border: 1.5px dashed rgb(238 77 45 / 0.45);
+    background: rgb(238 77 45 / 0.08);
+  }
+
+  /* Cartão-ticket: bordas com recorte circular nas laterais, como um cupom. */
+  .ticket-card {
+    position: relative;
+    background: #fff;
+    border-radius: 1.5rem;
+  }
+
+  .ticket-card::before,
+  .ticket-card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--ticket-bg, var(--color-cream));
+    border-radius: 9999px;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .ticket-card::before {
+    left: -0.75rem;
+  }
+
+  .ticket-card::after {
+    right: -0.75rem;
+  }
+
+  .ticket-divider {
+    border-left: 2px dashed rgb(36 28 26 / 0.12);
+  }
+
+  /* Blob de luz desfocado em tom Shopee — estático e discreto, mais quente que um glow neutro. */
+  .sun-glow {
+    border-radius: 9999px;
+    filter: blur(90px);
+    pointer-events: none;
+  }
+
+  /* Textura de pontos, usada como fundo decorativo em faixas cheias. */
+  .dot-texture {
+    background-image: radial-gradient(rgb(255 255 255 / 0.35) 1.5px, transparent 1.5px);
+    background-size: 18px 18px;
+  }
+
+  /* Grade técnica, usada em fundos escuros para dar um ar de painel/HUD. */
+  .tech-grid {
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 80% 65% at 50% 20%, #000 40%, transparent 100%);
+  }
+
+  /* Painel de vidro escuro, com leve blur e borda luminosa — usado sobre fundos escuros. */
+  .glass-panel-dark {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.03));
+    border: 1px solid rgb(255 255 255 / 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Moldura futurista: painel de vidro com borda em degradê luminoso, tipo contorno de HUD. */
+  .glow-frame {
+    position: relative;
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02));
+  }
+
+  .glow-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--color-shopee-light), rgb(255 255 255 / 0.08) 45%, rgb(255 255 255 / 0.08) 55%, var(--color-shopee));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Cantos estilo HUD nas pontas de um painel — quatro instâncias, uma por canto. */
+  .hud-corner {
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    border-color: var(--color-shopee-light);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* Moldura futurista sobre fundo claro: fundo branco, borda em degradê laranja bem presente. */
+  .glow-frame-light {
+    position: relative;
+    background: #fff;
+  }
+
+  .glow-frame-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(120deg, var(--color-shopee-light), var(--color-shopee) 45%, var(--color-shopee-deep) 70%, var(--color-shopee-light));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Ponto de status pulsante, tipo indicador "online" de um painel técnico. */
+  .pulse-dot {
+    position: relative;
+  }
+
+  .pulse-dot::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    background: var(--color-shopee-light);
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Divisores diagonais entre seções, no lugar de linhas retas. */
+  .diagonal-top {
+    clip-path: polygon(0 2.5rem, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .diagonal-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+  }
+
+  @media (min-width: 768px) {
+    .diagonal-top {
+      clip-path: polygon(0 4.5rem, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .diagonal-bottom {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4.5rem), 0 100%);
+    }
+  }
+
+  /* Revelar ao rolar (IntersectionObserver em Layout.tsx). */
+  .reveal-ready [data-reveal]:not(.is-visible) {
+    opacity: 0;
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    animation: reveal-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-dot::before {
+      animation: none;
+      opacity: 0;
+    }
+
+    .reveal-ready [data-reveal]:not(.is-visible) {
+      opacity: 1;
+    }
+
+    .reveal-ready [data-reveal].is-visible {
+      animation: none;
+    }
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
