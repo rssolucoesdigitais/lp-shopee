@@ -66,12 +66,11 @@ export default function Hero() {
                 <PackageCheck className="h-5 w-5 shrink-0 text-shopee-light" aria-hidden="true" />
                 <span className="text-sm font-semibold text-white/90">Processos conectados</span>
               </div>
+              <div className="flex cursor-default items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 transition-all duration-300 hover:border-shopee-light hover:shadow-[0_0_16px_-2px_var(--color-shopee-light)]">
+                <TrendingUp className="h-5 w-5 shrink-0 text-shopee-light" aria-hidden="true" />
+                <span className="text-sm font-semibold text-white/90">Gestão mais organizada</span>
+              </div>
             </div>
-          </div>
-
-          <div className="glass-panel-dark absolute -bottom-6 -left-6 flex cursor-default items-center gap-2 rounded-2xl px-4 py-3 shadow-xl shadow-black/40 transition-all duration-300 hover:border-shopee-light hover:shadow-[0_0_16px_-2px_var(--color-shopee-light)]">
-            <TrendingUp className="h-5 w-5 text-shopee-light" aria-hidden="true" />
-            <span className="text-sm font-bold text-white">Gestão mais organizada</span>
           </div>
         </div>
       </div>
