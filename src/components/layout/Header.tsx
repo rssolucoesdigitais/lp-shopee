@@ -24,7 +24,7 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-8">
         <a href="#top" aria-label="RS Soluções Digitais - Início" className="shrink-0">
-          <Logo className="h-8" />
+          <Logo className="h-12" />
         </a>
 
         <button className="p-2 text-shopee md:hidden" onClick={() => setOpen((v) => !v)} aria-label="Abrir menu" aria-expanded={open}>

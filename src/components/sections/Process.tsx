@@ -23,7 +23,7 @@ export default function Process() {
               key={step.title}
               data-reveal
               style={revealDelay(i, 90)}
-              className="glow-frame-light group relative flex items-center gap-5 overflow-hidden rounded-2xl p-5 shadow-md shadow-shopee/5 transition-all duration-300 hover:z-10 hover:scale-[1.03] hover:shadow-xl hover:shadow-shopee/20 md:p-6"
+              className="glow-frame-light border-soft group relative flex items-center gap-5 overflow-hidden rounded-2xl p-5 shadow-md shadow-shopee/5 transition-all duration-300 hover:z-10 hover:scale-[1.03] hover:shadow-xl hover:shadow-shopee/20 md:p-6"
             >
               <span className="hud-corner left-2 top-2 border-l-2 border-t-2 rounded-tl-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />
               <span className="hud-corner right-2 top-2 border-r-2 border-t-2 rounded-tr-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden="true" />

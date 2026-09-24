@@ -122,6 +122,12 @@
     pointer-events: none;
   }
 
+  /* Variante com borda mais discreta, para listas onde a moldura não deve competir com o conteúdo. */
+  .glow-frame-light.border-soft::before {
+    padding: 1.5px;
+    opacity: 0.45;
+  }
+
   /* Cantos estilo HUD nas pontas de um painel — quatro instâncias, uma por canto. */
   .hud-corner {
     position: absolute;
